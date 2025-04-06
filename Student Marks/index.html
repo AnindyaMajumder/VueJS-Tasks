@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Pagination</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <div id="app" class="container mt-5">
+    <h1>Student Marks</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" id="nameHeader">Student Name</th>
+          <th scope="col" id="markHeader">Marks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(student, index) in paginatedStudents" :key="index">
+          <td :headers="'nameHeader'">{{ student.name }}</td>
+          <td :headers="'markHeader'">{{ student.mark }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" :class="{ 'active': currentPage === pageNumber }" v-for="pageNumber in totalPages"
+          :key="pageNumber">
+          <a class="page-link" href="#" @click="changePage(pageNumber)">{{ pageNumber }}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="main.js"></script>
+
+</body>
+
+</html>
